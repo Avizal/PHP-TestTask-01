@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Test task by Avizal. Date created 2021-07-30">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.80.0">
+    <title>Test task 2021-07-30</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+
+    <!-- Favicons -->
+    <meta name="theme-color" content="#563d7c">
+
+    <style>
+      #column-left .item {
+        cursor: pointer;
+      }
+
+      #column-left .item.select {
+        font-weight: bold;
+      }
+
+      .modal .modal-content {
+        text-align: center;
+        padding: 20px;
+      }
+
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    
+<header>
+  <div class="collapse bg-dark" id="navbarHeader">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-md-7 py-4">
+          <h4 class="text-white">About</h4>
+          <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+        </div>
+        <div class="col-sm-4 offset-md-1 py-4">
+          <h4 class="text-white">Contact</h4>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white">Follow on Twitter</a></li>
+            <li><a href="#" class="text-white">Like on Facebook</a></li>
+            <li><a href="#" class="text-white">Email me</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="container d-flex justify-content-between">
+      <a href="#" class="navbar-brand d-flex align-items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        <strong>Album</strong>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main role="main">
+
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1>Category</h1>
+      <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+      <p>
+        <a href="#" class="btn btn-primary my-2">Main call to action</a>
+        <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+      </p>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row">
+          <div id="column-left" class="col-md-3">
+            <?php foreach ($categories as $category) { ?>
+                <div class="item <?php echo ($category['category_id'] == $category_id) ? 'select' : ''; ?>" category-id="<?php echo $category['category_id'] ?>"><?php echo $category['name'] ?> (<?php echo $category['total'] ?>)</div>
+            <?php } ?>
+            <select id="category-sort">
+                <option value="id_ASC" <?php echo ('id_ASC' == $sort) ? 'selected="selected"' : '' ?>>По умолчанию</option>
+                <option value="price_ASC" <?php echo ('price_ASC' == $sort) ? 'selected="selected"' : '' ?>>Сначала дешевые</option>
+                <option value="name_ASC" <?php echo ('name_ASC' == $sort) ? 'selected="selected"' : '' ?>>По алфавиту</option>
+                <option value="date_DESC" <?php echo ('date_DESC' == $sort) ? 'selected="selected"' : '' ?>>Сначала новые</option>
+            </select>
+          </div>
+          <div class="row col-md-9" id="products">
+              <?php foreach ($products as $product) { ?>
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                        <div class="card-body">
+                        <p class="card-text"><?php echo $product['name']; ?></p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target=".bd-example-modal-sm">Купить</button>
+                            </div>
+                            <small class="text-muted">$<?php echo $product['price']; ?></small>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+              <?php } ?>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      content
+    </div>
+  </div>
+</div>
+
+<footer class="text-muted">
+  <div class="container">
+    <p class="float-right">
+      <a href="#">Back to top</a>
+    </p>
+  </div>
+</footer>
+
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#column-left .item').on('click', function () {
+                let category_id = $(this).attr('category-id');
+
+                $('#column-left .item').removeClass('select');
+                $('#column-left .item[category-id=' + category_id + ']').addClass('select');
+
+                updateProducts();
+            });
+
+            $('#category-sort').on('change', function () {
+                updateProducts();
+            });
+
+            $('.card button').on('click', function () {
+                let parent = $(this).parents('.card');
+                let name = $(parent).find('.card-text').html();
+                let price = $(parent).find('.text-muted').html();
+
+                $('.modal .modal-content').html('Вы собираетесь купить: <b>' + name + '</b><br/>за: ' + price);
+
+                $('.modal').modal('show');
+            });
+        });
+
+        function updateProducts() {
+            let category_id = $('#column-left .item.select').attr('category-id');
+            let sort = $('#category-sort').val();
+
+            const url = new URL(window.location);
+            url.searchParams.set('category_id', category_id);
+            url.searchParams.set('sort', sort);
+
+            history.pushState(null, null, url);
+
+            $.ajax({
+                type: "GET",
+                url: "?route=category/getAjaxProducts",
+                data: {
+                    'category_id' : category_id,
+                    'sort' : sort
+                },
+                dataType: "json",
+                success: function (response) {
+                    if (response.success == true) {
+                        replaceCart(response.products);
+                    } else {
+                        alert(response);
+                    }
+                }
+            });
+        }
+
+        function replaceCart(products) {
+            $('#products').html('');
+
+            $.each(products, function (index, value) {
+                $('#products').append('<div class="col-md-4">'
+                                        + '<div class="card mb-4 shadow-sm">'
+                                        + '<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>'
+                                        + '<div class="card-body">'
+                                        + '<p class="card-text">' + value.name + '</p>'
+                                        + '<div class="d-flex justify-content-between align-items-center">'
+                                        + '<div class="btn-group">'
+                                        + '<button type="button" class="btn btn-sm btn-outline-secondary">Купить</button>'
+                                        + '</div>'
+                                        + '<small class="text-muted">$' + value.price + '</small>'
+                                        + '</div>'
+                                        + '</div>'
+                                        + '</div>'
+                                        + '</div>'
+                                    );
+
+            });
+
+        }
+    </script>
+    
+  </body>
+</html>
